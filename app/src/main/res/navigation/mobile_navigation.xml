@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_kondisi">
+
+    <fragment
+        android:id="@+id/navigation_kondisi"
+        android:name="com.example.tambakapp.ui.kondisi.KondisiFragment"
+        android:label="@string/title_kondisi"
+        tools:layout="@layout/fragment_kondisi" />
+
+    <fragment
+        android:id="@+id/navigation_rincian"
+        android:name="com.example.tambakapp.ui.rincian.RincianFragment"
+        android:label="@string/title_rincian"
+        tools:layout="@layout/fragment_rincian" />
+
+    <fragment
+        android:id="@+id/navigation_sunting"
+        android:name="com.example.tambakapp.ui.sunting.SuntingFragment"
+        android:label="@string/title_sunting"
+        tools:layout="@layout/fragment_sunting" />
+</navigation>

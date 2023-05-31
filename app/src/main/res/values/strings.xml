@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">TambakApp</string>
+    <string name="title_kondisi">Kondisi</string>
+    <string name="title_rincian">Rincian</string>
+    <string name="title_sunting">Sunting</string>
+    <string name="tambak_name">Nama Tambak</string>
+
+    <!-- Kondisi -->
+    <string name="text_tambak">Tambak</string>
+    <string name="text_cycle_start">Mulai Siklus</string>
+    <string name="text_cycle_stop">Sudahi Siklus</string>
+    <string name="text_kincir">Kincir</string>
+    <string name="text_condition">Kesehatan Kincir</string>
+    <string name="text_connection">Koneksi Jaringan</string>
+    <string name="text_battery">Daya Baterai</string>
+
+    <!-- Rincian -->
+    <string name="text_dummy_status">000</string>
+    <string name="text_dummy_cycle_count">Hari ke-</string>
+
+    <!-- Sunting -->
+    <string name="text_add_sensor">Tambah Sensor</string>
+    <string name="text_edit_tambak">Penyuntingan Tambak</string>
+    <string name="text_edit_sensor">Penyuntingan Sensor</string>
+    <string name="text_edit_alarm">Penyuntingan Alarm</string>
+    <string name="text_edit_device">Penyuntingan Gawai</string>
+</resources>
