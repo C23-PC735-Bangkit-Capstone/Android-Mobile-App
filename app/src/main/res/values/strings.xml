@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">TambakApp</string>
-    <string name="title_kondisi">Kondisi</string>
-    <string name="title_rincian">Rincian</string>
-    <string name="title_sunting">Sunting</string>
+    <string name="title_kondisi">KONDISI</string>
+    <string name="title_rincian">RINCIAN</string>
+    <string name="title_sunting">SUNTING</string>
     <string name="tambak_name">Nama Tambak</string>
 
     <!-- Kondisi -->
-    <string name="text_tambak">Tambak</string>
+    <string name="text_tambak">TAMBAK</string>
     <string name="text_cycle_start">Mulai Siklus</string>
     <string name="text_cycle_stop">Sudahi Siklus</string>
     <string name="text_kincir">Kincir</string>
@@ -19,6 +19,7 @@
     <string name="text_dummy_cycle_count">Hari ke-</string>
 
     <!-- Sunting -->
+    <string name="dummy_device_info">Informasi Gawai\t\tJPDA-XT012\nVersi Sistem:\t\tv1.03</string>
     <string name="text_add_sensor">Tambah Sensor</string>
     <string name="text_edit_tambak">Penyuntingan Tambak</string>
     <string name="text_edit_sensor">Penyuntingan Sensor</string>

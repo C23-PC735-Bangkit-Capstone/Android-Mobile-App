@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="cycleStatusColor" format="color"/>
+    <attr name="textColorMain" format="color"/>
+    <attr name="textColorAdditional" format="color"/>
+    <attr name="cardColorPrimary" format="color"/>
+    <attr name="cardColorSecondary" format="color"/>
+    <attr name="defaultButtonColor" format="color"/>
+
+</resources>

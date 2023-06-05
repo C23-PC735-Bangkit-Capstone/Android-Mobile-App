@@ -29,9 +29,9 @@ class KondisiFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        listTambak.add(TambakData(1, "Tambak 1", 20, 100))
-        listTambak.add(TambakData(2, "Tambak 2", 99, 26))
-        listTambak.add(TambakData(3, "Tambak 3", 1, 100))
+        listTambak.add(TambakData(1, "TAMBAK 1", 20, 100))
+        listTambak.add(TambakData(2, "TAMBAK 2", 99, 26))
+        listTambak.add(TambakData(3, "TAMBAK 3", 1, 100))
         listKincir.add(KincirData("Kincir 1a",1, 100, "Baik", "Baik"))
         listKincir.add(KincirData("Kincir 1b",1, 45, "Rusak", "Inkonsisten"))
         listKincir.add(KincirData("Kincir 2a",2, 100, "Baik", "Baik"))

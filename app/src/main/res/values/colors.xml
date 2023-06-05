@@ -8,8 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- Dark Mode -->
+    <color name="grey">#9A9A9A</color>
+    <color name="grey_84">#2B2B2B</color>
+    <color name="grey_90">#191919</color>
+
     <!-- Status Color -->
     <color name="status_red">#D0312D</color>
     <color name="status_yellow">#FCA510</color>
-    <color name="status_green">#3CB043</color>
+    <color name="status_green">#359B76</color>
 </resources>

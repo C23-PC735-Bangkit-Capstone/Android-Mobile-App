@@ -13,46 +13,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/black"
-        app:strokeWidth="1dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="0dp"
+        android:backgroundTint="?attr/cardColorPrimary"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginEnd="15dp">
+            android:layout_marginBottom="15dp">
 
             <TextView
                 android:id="@+id/tv_tambak_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/text_tambak"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="?attr/textColorMain"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="16dp"/>
 
             <Button
                 android:id="@+id/btn_cycle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:text="@string/text_cycle_start"
+                android:textColor="?attr/textColorMain"
                 android:textSize="12sp"
+                android:backgroundTint="?attr/cycleStatusColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                />
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="16dp"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_tambak_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_tambak_name"
+                app:layout_constraintTop_toBottomOf="@id/btn_cycle"
                 android:visibility="gone">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="15dp"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

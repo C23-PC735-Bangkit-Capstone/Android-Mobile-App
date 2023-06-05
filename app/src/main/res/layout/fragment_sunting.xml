@@ -16,16 +16,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/black"
-        app:strokeWidth="1dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="0dp"
+        app:cardBackgroundColor="?attr/cardColorPrimary">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Informasi Gawai"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:layout_margin="10dp"
+            android:text="@string/dummy_device_info"
+            android:textColor="?attr/textColorMain"
+            android:textSize="17sp" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -34,8 +34,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cv_device_info"
-        android:layout_marginTop="16dp"
-        >
+        android:layout_marginTop="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +47,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/text_add_sensor" />
+                android:text="@string/text_add_sensor"
+                android:textColor="?attr/textColorMain"/>
 
             <Button
                 android:id="@+id/btn_edt_tambak"
@@ -56,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/text_edit_tambak" />
+                android:text="@string/text_edit_tambak"
+                android:textColor="?attr/textColorMain"/>
 
             <Button
                 android:id="@+id/btn_edt_sensor"
@@ -64,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/text_edit_sensor" />
+                android:text="@string/text_edit_sensor"
+                android:textColor="?attr/textColorMain"/>
 
             <Button
                 android:id="@+id/btn_edt_alarm"
@@ -72,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/text_edit_alarm" />
+                android:text="@string/text_edit_alarm"
+                android:textColor="?attr/textColorMain"/>
 
             <Button
                 android:id="@+id/btn_edt_device"
@@ -80,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/text_edit_device" />
+                android:text="@string/text_edit_device"
+                android:textColor="?attr/textColorMain"/>
 
         </LinearLayout>
 
