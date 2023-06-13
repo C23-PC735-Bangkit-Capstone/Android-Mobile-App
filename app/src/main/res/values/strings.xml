@@ -15,8 +15,7 @@
     <string name="text_battery">Daya Baterai</string>
 
     <!-- Rincian -->
-    <string name="text_dummy_status">000</string>
-    <string name="text_dummy_cycle_count">Hari ke-</string>
+    <string name="text_dummy_notification">Test Notifikasi</string>
 
     <!-- Sunting -->
     <string name="dummy_device_info">Informasi Gawai\t\tJPDA-XT012\nVersi Sistem:\t\tv1.03</string>

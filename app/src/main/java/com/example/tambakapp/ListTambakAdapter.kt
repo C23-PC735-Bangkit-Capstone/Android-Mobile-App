@@ -24,7 +24,7 @@ class ListTambakAdapter(private val listTambak: ArrayList<TambakData>, private v
         val tvTambakName: TextView = itemView.findViewById(R.id.tv_tambak_name)
         val clTambakDetails: ConstraintLayout = itemView.findViewById(R.id.cl_tambak_details)
         val rvKincir: RecyclerView = itemView.findViewById(R.id.rv_kincir)
-        val btnCycle: Button = itemView.findViewById(R.id.btn_cycle)
+        // val btnCycle: Button = itemView.findViewById(R.id.btn_cycle)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -55,9 +55,11 @@ class ListTambakAdapter(private val listTambak: ArrayList<TambakData>, private v
             notifyItemChanged(position)
         }
 
+        /*
         holder.btnCycle.setOnClickListener {
             Toast.makeText(context, "Test mulai siklus ${currentItem.name}", Toast.LENGTH_SHORT).show()
         }
+         */
     }
 
     override fun getItemCount(): Int = listTambak.size

@@ -1,5 +1,6 @@
 package com.example.tambakapp
 
+import android.app.Notification
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.tambakapp.databinding.ActivityMainBinding
+import com.example.tambakapp.ui.rincian.RincianFragment
 
 class MainActivity : AppCompatActivity() {
 
