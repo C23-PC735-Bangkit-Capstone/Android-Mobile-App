@@ -8,11 +8,13 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tambakapp.data.response.ResponseDeviceItem
 import com.example.tambakapp.data.response.ResponsePondItem
 
-class ListTambakAdapter(private val listKincir: ArrayList<KincirData>,
-                        private val context: Context,
-                        private val viewModel: DropDownViewModel, private val listTambak: List<ResponsePondItem>) : RecyclerView.Adapter<ListTambakAdapter.ListViewHolder>() {
+class ListTambakAdapter(private val context: Context,
+                        private val viewModel: DropDownViewModel,
+                        private val listTambak: List<ResponsePondItem>,
+                        private val listKincir: List<ResponseDeviceItem>) : RecyclerView.Adapter<ListTambakAdapter.ListViewHolder>() {
 
     /*
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -40,9 +42,9 @@ class ListTambakAdapter(private val listKincir: ArrayList<KincirData>,
         val isKincirVisible: Boolean = currentItem.kincirViewIsVisible
         holder.clTambakDetails.visibility = if (isKincirVisible) View.VISIBLE else View.GONE
 
-        val listKincirSorted = ArrayList<KincirData>()
+        val listKincirSorted: MutableList<ResponseDeviceItem> = mutableListOf()
         for (kincir in listKincir) {
-            if (kincir.tambakId == currentItem.pondId) {
+            if (kincir.pondId == currentItem.pondId) {
                 listKincirSorted.add(kincir)
             }
         }

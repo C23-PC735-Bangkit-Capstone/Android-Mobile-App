@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tambakapp.*
+import com.example.tambakapp.data.response.ResponseDeviceItem
 import com.example.tambakapp.data.response.ResponsePondItem
 import com.example.tambakapp.data.retrofit.ApiConfig
 import com.example.tambakapp.databinding.FragmentKondisiBinding
@@ -26,7 +27,7 @@ class KondisiFragment : Fragment() {
 
     private lateinit var rvTambak: RecyclerView
     // private val listTambak = ArrayList<TambakData>()
-    private val listKincir = ArrayList<KincirData>()
+    // private val listKincir = ArrayList<KincirData>()
     private var _binding: FragmentKondisiBinding? = null
     private lateinit var binding: FragmentKondisiBinding
     private lateinit var dropDownViewModel: DropDownViewModel
@@ -38,15 +39,6 @@ class KondisiFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        /*
-        listTambak.add(TambakData(1, "TAMBAK 1", 20, 100))
-        listTambak.add(TambakData(2, "TAMBAK 2", 99, 26))
-        listTambak.add(TambakData(3, "TAMBAK 3", 1, 100))
-         */
-        listKincir.add(KincirData("Kincir 1a",10001001, 100, "Baik", "Baik"))
-        listKincir.add(KincirData("Kincir 1b",10001001, 45, "Rusak", "Inkonsisten"))
-        listKincir.add(KincirData("Kincir 2a",10001002, 100, "Baik", "Baik"))
-        listKincir.add(KincirData("Kincir 2b",10001002, 45, "Rusak", "Inkonsisten"))
     }
 
     override fun onCreateView(
@@ -69,7 +61,7 @@ class KondisiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getListTambak()
+        getTambakAndKincirData()
     }
 
     override fun onDestroyView() {
@@ -77,22 +69,52 @@ class KondisiFragment : Fragment() {
         _binding = null
     }
 
-    private fun getListTambak() {
+    private fun getTambakAndKincirData() {
         showLoading(true)
-        val client = ApiConfig.getApiService().getListTambak(USER_ID)
-        client.enqueue(object : Callback<List<ResponsePondItem>> {
+        // Pond Client
+        val pondClient = ApiConfig.getApiService().getListTambak(USER_ID)
+        pondClient.enqueue(object : Callback<List<ResponsePondItem>> {
             override fun onResponse(
                 call: Call<List<ResponsePondItem>>,
-                response: Response<List<ResponsePondItem>>
+                pondResponse: Response<List<ResponsePondItem>>
             ) {
                 showLoading(false)
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null) {
-                        setTambakData(responseBody)
+                if (pondResponse.isSuccessful) {
+                    val pondResponseBody = pondResponse.body()
+                    val deviceResponses: MutableList<ResponseDeviceItem> = mutableListOf()
+                    if (pondResponseBody != null) {
+                        for (tambak in pondResponseBody) {
+                            showLoading(true)
+                            // Device Client
+                            val deviceClient = ApiConfig.getApiService().getListKincir(tambak.pondId)
+                            deviceClient.enqueue(object : Callback<List<ResponseDeviceItem>> {
+                                override fun onResponse(
+                                    call: Call<List<ResponseDeviceItem>>,
+                                    deviceResponse: Response<List<ResponseDeviceItem>>
+                                ) {
+                                    showLoading(false)
+                                    if (deviceResponse.isSuccessful) {
+                                        val deviceResponseBody = deviceResponse.body()
+                                        if (deviceResponseBody != null) {
+                                            for (device in deviceResponseBody) {
+                                                deviceResponses.add(device)
+                                            }
+                                        }
+                                    } else {
+                                        Log.e(TAG,"onFailure: ${pondResponse.message()}")
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<List<ResponseDeviceItem>>, t: Throwable) {
+                                    showLoading(false)
+                                    Log.e(TAG,"onFailure: ${t.message}")
+                                }
+                            })
+                        }
+                        showRecyclerList(pondResponseBody, deviceResponses)
                     }
                 } else {
-                    Log.e(TAG,"onFailure: ${response.message()}")
+                    Log.e(TAG,"onFailure: ${pondResponse.message()}")
                 }
             }
 
@@ -103,33 +125,6 @@ class KondisiFragment : Fragment() {
         })
     }
 
-    private fun setTambakData(list: List<ResponsePondItem>) {
-        // dropDownViewModel.setItemList(list)
-        showRecyclerList(list)
-        /*
-        for (user in userList) {
-            listUser.add(
-                User(
-                    username = user.login,
-                    photo = user.avatarUrl
-                )
-            )
-        }
-        if (list.size == 0) {
-            Toast.makeText(this@MainActivity,"No result for $USERNAME_QUERY", Toast.LENGTH_SHORT).show()
-        }
-        val adapter = ListUserAdapter(listUser)
-        binding.rvUsers.adapter = adapter
-
-        adapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: User) {
-                showSelectedUser(data)
-            }
-        })
-
-         */
-    }
-
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             binding.progressbar.visibility = View.VISIBLE
@@ -138,9 +133,9 @@ class KondisiFragment : Fragment() {
         }
     }
 
-    private fun showRecyclerList(list: List<ResponsePondItem>) {
+    private fun showRecyclerList(listTambak: List<ResponsePondItem>, listKincir: List<ResponseDeviceItem>) {
         rvTambak.layoutManager = LinearLayoutManager(rvTambak.context)
-        val listTambakAdapter = ListTambakAdapter(listKincir, rvTambak.context, dropDownViewModel, list)
+        val listTambakAdapter = ListTambakAdapter(rvTambak.context, dropDownViewModel, listTambak, listKincir)
         rvTambak.adapter = listTambakAdapter
     }
 }

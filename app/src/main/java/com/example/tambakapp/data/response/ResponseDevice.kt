@@ -29,5 +29,7 @@ data class ResponseDeviceItem(
 	val signalStrength: Int,
 
 	@field:SerializedName("monitor_status")
-	val monitorStatus: Boolean
+	val monitorStatus: Boolean,
+
+	var kincirViewIsVisible: Boolean = false
 )

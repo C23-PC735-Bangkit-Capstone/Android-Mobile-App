@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tambakapp.data.response.ResponseDeviceItem
 
-class ListKincirAdapter(private val listKincir: ArrayList<KincirData>) : RecyclerView.Adapter<ListKincirAdapter.ListViewHolder>() {
+class ListKincirAdapter(private val listKincir: List<ResponseDeviceItem>) : RecyclerView.Adapter<ListKincirAdapter.ListViewHolder>() {
 
     /*
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -31,16 +32,33 @@ class ListKincirAdapter(private val listKincir: ArrayList<KincirData>) : Recycle
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val currentItem = listKincir[position]
-        holder.tvName.text = currentItem.name
-        holder.tvBattery.text = currentItem.battery.toString() + "%"
-        holder.tvCondition.text = currentItem.condition
-        holder.tvConnection.text = currentItem.connection
+        holder.tvName.text = "Kincir " + currentItem.deviceId.toString()
+        holder.tvBattery.text = currentItem.batteryStrength.toString() + "%"
+        holder.tvCondition.text = when (currentItem.paddlewheelCondition) {
+            "Perfect" -> {
+                "Sangat Baik"
+            }
+            "Good" -> {
+                "Baik"
+            }
+            "Bad" -> {
+                "Buruk"
+            }
+            else -> {
+                "<kategori belum terbarui>"
+            }
+        }
+        holder.tvConnection.text = when (currentItem.signalStrength) {
+            in 80..100 -> "Baik"
+            in 0..79 -> "Inkonsisten"
+            else -> "Abnormal"
+        }
 
-        val isVisible: Boolean = currentItem.viewIsVisible
+        val isVisible: Boolean = currentItem.kincirViewIsVisible
         holder.clDetails.visibility = if (isVisible) View.VISIBLE else View.GONE
 
         holder.itemView.setOnClickListener {
-            currentItem.viewIsVisible = !currentItem.viewIsVisible
+            currentItem.kincirViewIsVisible = !currentItem.kincirViewIsVisible
             notifyItemChanged(position)
         }
     }
