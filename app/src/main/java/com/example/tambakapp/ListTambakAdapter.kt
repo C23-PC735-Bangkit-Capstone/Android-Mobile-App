@@ -4,14 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tambakapp.data.response.ResponsePondItem
 
-class ListTambakAdapter(private val listTambak: ArrayList<TambakData>, private val listKincir: ArrayList<KincirData>, private val context: Context) : RecyclerView.Adapter<ListTambakAdapter.ListViewHolder>() {
+class ListTambakAdapter(private val listKincir: ArrayList<KincirData>,
+                        private val context: Context,
+                        private val viewModel: DropDownViewModel, private val listTambak: List<ResponsePondItem>) : RecyclerView.Adapter<ListTambakAdapter.ListViewHolder>() {
 
     /*
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -34,14 +35,14 @@ class ListTambakAdapter(private val listTambak: ArrayList<TambakData>, private v
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val currentItem = listTambak[position]
-        holder.tvTambakName.text = currentItem.name
+        holder.tvTambakName.text = "TAMBAK " + currentItem.pondId.toString()
 
-        val isKincirVisible: Boolean = currentItem.kincirIsVisible
+        val isKincirVisible: Boolean = currentItem.kincirViewIsVisible
         holder.clTambakDetails.visibility = if (isKincirVisible) View.VISIBLE else View.GONE
 
         val listKincirSorted = ArrayList<KincirData>()
         for (kincir in listKincir) {
-            if (kincir.tambakId == currentItem.id) {
+            if (kincir.tambakId == currentItem.pondId) {
                 listKincirSorted.add(kincir)
             }
         }
@@ -51,7 +52,7 @@ class ListTambakAdapter(private val listTambak: ArrayList<TambakData>, private v
         holder.rvKincir.adapter = listKincirAdapter
 
         holder.itemView.setOnClickListener {
-            currentItem.kincirIsVisible = !currentItem.kincirIsVisible
+            currentItem.kincirViewIsVisible = !currentItem.kincirViewIsVisible
             notifyItemChanged(position)
         }
 
@@ -63,6 +64,7 @@ class ListTambakAdapter(private val listTambak: ArrayList<TambakData>, private v
     }
 
     override fun getItemCount(): Int = listTambak.size
+    //override fun getItemCount(): Int = viewModel.getItemList().size
 
     /*
     interface OnItemClickCallback{

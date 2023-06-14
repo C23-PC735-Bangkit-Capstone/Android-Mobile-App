@@ -9,5 +9,5 @@ data class TambakData(
     var name: String,
     var cycleCount: Int,
     var status: Int,
-    var kincirIsVisible: Boolean = false
+    var kincirViewIsVisible: Boolean = false
 ): Parcelable
