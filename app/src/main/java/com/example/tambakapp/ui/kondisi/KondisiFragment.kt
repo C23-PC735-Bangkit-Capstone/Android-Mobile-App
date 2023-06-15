@@ -81,6 +81,8 @@ class KondisiFragment : Fragment() {
                 showLoading(false)
                 if (pondResponse.isSuccessful) {
                     val pondResponseBody = pondResponse.body()
+                    val totalCalls = pondResponseBody?.size ?: 0 // detect device calls per pond
+                    var completedCalls = 0 // detect device calls per pond
                     val deviceResponses: MutableList<ResponseDeviceItem> = mutableListOf()
                     if (pondResponseBody != null) {
                         for (tambak in pondResponseBody) {
@@ -103,15 +105,29 @@ class KondisiFragment : Fragment() {
                                     } else {
                                         Log.e(TAG,"onFailure: ${pondResponse.message()}")
                                     }
+                                    completedCalls++
+                                    if (completedCalls == totalCalls) {
+                                        val sortedDeviceResponses = deviceResponses.sortedBy { it.deviceId }
+                                        val sortedPondResponses = pondResponseBody.sortedBy { it.pondId }
+                                        //Log.e(TAG,"${sortedDeviceResponses}\n\n${sortedPondResponses}")
+                                        showRecyclerList(sortedPondResponses, sortedDeviceResponses)
+                                    }
                                 }
 
                                 override fun onFailure(call: Call<List<ResponseDeviceItem>>, t: Throwable) {
                                     showLoading(false)
                                     Log.e(TAG,"onFailure: ${t.message}")
+                                    completedCalls++
+                                    if (completedCalls == totalCalls) {
+                                        val sortedDeviceResponses = deviceResponses.sortedBy { it.deviceId }
+                                        val sortedPondResponses = pondResponseBody.sortedBy { it.pondId }
+                                        //Log.e(TAG,"${deviceResponses}\n\n${pondResponseBody}")
+                                        showRecyclerList(sortedPondResponses, sortedDeviceResponses)
+                                    }
                                 }
                             })
                         }
-                        showRecyclerList(pondResponseBody, deviceResponses)
+                        // showRecyclerList(pondResponseBody, deviceResponses)
                     }
                 } else {
                     Log.e(TAG,"onFailure: ${pondResponse.message()}")
