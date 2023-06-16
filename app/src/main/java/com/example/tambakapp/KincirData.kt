@@ -2,23 +2,17 @@ package com.example.tambakapp
 
 import android.os.Parcelable
 import com.github.mikephil.charting.data.Entry
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class KincirData(
-    var name: String,
-    var tambakId: Int,
-    var battery: Int,
-    var condition: String,
-    var connection: String,
-    var chartEntries: ArrayList<Entry> = ArrayList<Entry>(
-        listOf(
-            Entry(0f, 11f),
-            Entry(1f, 13f),
-            Entry(2f, 18f),
-            Entry(3f, 15f),
-            Entry(4f, 16f)
-        )
-    ),
-    var viewIsVisible: Boolean = false
+    val deviceStatus: Boolean,
+    val deviceId: Int,
+    val batteryStrength: Int,
+    val pondId: Int,
+    val paddlewheelCondition: String,
+    val signalStrength: Int,
+    val monitorStatus: Boolean,
+    var kincirViewIsVisible: Boolean = false
 ): Parcelable

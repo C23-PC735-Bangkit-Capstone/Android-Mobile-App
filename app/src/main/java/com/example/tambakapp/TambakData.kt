@@ -5,9 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TambakData(
-    var id: Int,
-    var name: String,
-    var cycleCount: Int,
-    var status: Int,
+    val pondId: Int,
+    val userId: Int,
+    val pondLocation: String,
     var kincirViewIsVisible: Boolean = false
-): Parcelable
+) : Parcelable

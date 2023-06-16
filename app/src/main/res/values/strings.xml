@@ -13,6 +13,8 @@
     <string name="text_condition">Kesehatan Kincir</string>
     <string name="text_connection">Koneksi Jaringan</string>
     <string name="text_battery">Daya Baterai</string>
+    <string name="text_load_unsuccessful">Gagal memuat</string>
+    <string name="text_btn_retry">Coba lagi</string>
 
     <!-- Rincian -->
     <string name="text_dummy_notification">Test Notifikasi</string>

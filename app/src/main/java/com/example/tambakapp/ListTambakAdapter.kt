@@ -12,9 +12,9 @@ import com.example.tambakapp.data.response.ResponseDeviceItem
 import com.example.tambakapp.data.response.ResponsePondItem
 
 class ListTambakAdapter(private val context: Context,
-                        private val viewModel: DropDownViewModel,
-                        private val listTambak: List<ResponsePondItem>,
-                        private val listKincir: List<ResponseDeviceItem>) : RecyclerView.Adapter<ListTambakAdapter.ListViewHolder>() {
+                        private val viewModel: TambakViewModel,
+                        private val listTambak: List<TambakData>,
+                        private val listKincir: List<KincirData>) : RecyclerView.Adapter<ListTambakAdapter.ListViewHolder>() {
 
     /*
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -42,7 +42,7 @@ class ListTambakAdapter(private val context: Context,
         val isKincirVisible: Boolean = currentItem.kincirViewIsVisible
         holder.clTambakDetails.visibility = if (isKincirVisible) View.VISIBLE else View.GONE
 
-        val listKincirSorted: MutableList<ResponseDeviceItem> = mutableListOf()
+        val listKincirSorted: MutableList<KincirData> = mutableListOf()
         for (kincir in listKincir) {
             if (kincir.pondId == currentItem.pondId) {
                 listKincirSorted.add(kincir)

@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tambakapp.data.response.ResponseDeviceItem
 
-class ListKincirAdapter(private val listKincir: List<ResponseDeviceItem>) : RecyclerView.Adapter<ListKincirAdapter.ListViewHolder>() {
+class ListKincirAdapter(private val listKincir: List<KincirData>) : RecyclerView.Adapter<ListKincirAdapter.ListViewHolder>() {
 
     /*
     private lateinit var onItemClickCallback: OnItemClickCallback
