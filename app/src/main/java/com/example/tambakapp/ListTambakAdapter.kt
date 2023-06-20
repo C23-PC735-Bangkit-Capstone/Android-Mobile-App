@@ -50,7 +50,7 @@ class ListTambakAdapter(private val context: Context,
         }
 
         holder.rvKincir.layoutManager = LinearLayoutManager(context)
-        val listKincirAdapter = ListKincirAdapter(listKincirSorted)
+        val listKincirAdapter = ListKincirAdapter(listKincirSorted, context)
         holder.rvKincir.adapter = listKincirAdapter
 
         holder.itemView.setOnClickListener {

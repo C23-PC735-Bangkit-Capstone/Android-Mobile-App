@@ -49,6 +49,11 @@ class SuntingFragment : Fragment() {
             val intent = Intent(requireContext(), AddSensorActivity::class.java)
             startActivity(intent)
         }
+
+        binding.btnEdtDevice.setOnClickListener {
+            val intent = Intent(requireContext(), DeviceSettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {

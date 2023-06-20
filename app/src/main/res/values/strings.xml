@@ -20,7 +20,8 @@
     <string name="text_dummy_notification">Test Notifikasi</string>
 
     <!-- Sunting -->
-    <string name="dummy_device_info">Informasi Gawai\t\tJPDA-XT012\nVersi Sistem:\t\tv1.03</string>
+    <string name="device_info">ID:\nNama:\nKontak:\nVolume Notifikasi:</string>
+    <string name="text_apply_user">Gunakan ID</string>
     <string name="text_add_sensor">Tambah Sensor</string>
     <string name="text_edit_tambak">Penyuntingan Tambak</string>
     <string name="text_edit_sensor">Penyuntingan Sensor</string>

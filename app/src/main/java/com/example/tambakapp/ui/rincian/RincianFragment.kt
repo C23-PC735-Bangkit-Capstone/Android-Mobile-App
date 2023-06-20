@@ -77,7 +77,7 @@ class RincianFragment : Fragment() {
         val mNotificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val mBuilder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_notifications_black_24dp))
+            // .setLargeIcon(R.drawable.ic_notifications_black_24dp)
             .setContentTitle(title)
             .setContentText(contentText)
             .setSubText(subText)

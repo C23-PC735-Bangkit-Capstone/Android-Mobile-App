@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@string/dummy_device_info"
+            android:text="@string/device_info"
             android:textColor="?attr/textColorMain"
             android:textSize="17sp" />
 
@@ -48,7 +48,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/text_add_sensor"
-                android:textColor="?attr/textColorMain"/>
+                android:textColor="?attr/textColorMain"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btn_edt_tambak"
@@ -57,7 +58,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/text_edit_tambak"
-                android:textColor="?attr/textColorMain"/>
+                android:textColor="?attr/textColorMain"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btn_edt_sensor"
@@ -66,7 +68,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/text_edit_sensor"
-                android:textColor="?attr/textColorMain"/>
+                android:textColor="?attr/textColorMain"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btn_edt_alarm"
@@ -75,7 +78,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/text_edit_alarm"
-                android:textColor="?attr/textColorMain"/>
+                android:textColor="?attr/textColorMain"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btn_edt_device"

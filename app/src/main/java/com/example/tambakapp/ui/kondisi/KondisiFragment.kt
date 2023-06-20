@@ -10,10 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.example.tambakapp.*
 import com.example.tambakapp.data.db.*
 import com.example.tambakapp.data.response.ResponseDeviceItem
@@ -25,6 +22,7 @@ import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.concurrent.TimeUnit
 
 class KondisiFragment : Fragment() {
 
@@ -43,6 +41,8 @@ class KondisiFragment : Fragment() {
     private lateinit var pondDao: PondResponseDao
     private lateinit var deviceDao: DeviceResponseDao
     private lateinit var userDao: UserResponseDao
+    private lateinit var workManager: WorkManager
+    private lateinit var periodicWorkRequest: PeriodicWorkRequest
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -67,19 +67,6 @@ class KondisiFragment : Fragment() {
         deviceDao = responseDatabase.deviceResponseDao()
         userDao = responseDatabase.userResponseDao()
 
-        lifecycleScope.launch {
-            insertPondResponse()
-        }
-
-        val workConstraint = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .build()
-
-        val workRequest = OneTimeWorkRequestBuilder<ResponseWorker>()
-            .setConstraints(workConstraint)
-            .build()
-        WorkManager.getInstance(requireContext()).enqueue(workRequest)
-
         binding.btnRetry.setOnClickListener {
             showLoadingUnsuccessful(false)
             refreshFragment()
@@ -98,12 +85,31 @@ class KondisiFragment : Fragment() {
             binding.kondisiFragment.isRefreshing = false
         }
 
+        workManager = WorkManager.getInstance(requireContext())
+        periodicTask()
+
         getTambakAndKincirData()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun periodicTask() {
+        val repeatInterval = 15
+        val timeUnit = TimeUnit.MINUTES
+        val workConstraint = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+        periodicWorkRequest = PeriodicWorkRequest.Builder(ResponseWorker::class.java, repeatInterval.toLong(), timeUnit)
+            .setConstraints(workConstraint)
+            .build()
+        workManager.enqueueUniquePeriodicWork(
+            "Attention Work (periodicWorkRequest)",
+            ExistingPeriodicWorkPolicy.KEEP,
+            periodicWorkRequest
+        )
     }
 
     private fun getTambakAndKincirData() {
@@ -288,12 +294,6 @@ class KondisiFragment : Fragment() {
                 Log.e(TAG,"onFailure: ${t.message}")
             }
         })
-    }
-
-    suspend fun insertPondResponse() {
-        // pondDao.insert(PondResponseEntity(pond_id = 1, user_id = 1, pond_location = "Jakarta Utara"))
-        Log.e(TAG, "DAO: ${pondDao.getPondResponseById(1)}")
-        // Log.e(TAG, "Database")
     }
 
     private fun showLoading(isLoading: Boolean) {
